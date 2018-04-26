@@ -197,6 +197,37 @@ public partial class BasicMonster : Character, IFixedUpdate
 				break;
 			}
 		}
+		else if( collision.gameObject.CompareTag("Bullet") )
+		{
+			AttackObject obj = collision.gameObject.GetComponent<AttackObject>();
+
+			if (obj == null)
+			{
+				Debug.LogError("logic error");
+				return;
+			}
+
+			var atkInfo = obj.AttackInfo();
+
+			if (atkInfo.m_bRight == m_bRight) { return; }
+
+			switch (atkInfo.eSource)
+			{
+				case eDamageSource.Player:
+				case eDamageSource.PlayerSkill:
+				{
+					GetHit(atkInfo);
+
+					Debug.LogError("어택드");
+
+					if (bIsDie == true)
+					{
+						Debug.LogError("으앙 다이");
+					}
+				}
+				break;
+			}
+		}
 	}
 
 	public override void GetHit(ST_AttackInfo a_refAttack)

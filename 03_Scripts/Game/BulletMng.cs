@@ -70,7 +70,7 @@ public class BulletMng : MonoBehaviour, ICleanUp
 		}
 	}
 
-	public void AddShot(eBullet a_eBulletID, ST_AttackInfo a_refAtk, Vector3 a_VcFirstPos, Vector3 a_VcDir, Character a_refTarget = null)
+	public Bullet AddShot(int a_nLayer, eBullet a_eBulletID, ST_AttackInfo a_refAtk, Vector3 a_VcFirstPos, Vector3 a_VcDir, Character a_refTarget = null)
 	{
 		if( m_lliBulletPool.Count == 0 )
 		{
@@ -80,9 +80,12 @@ public class BulletMng : MonoBehaviour, ICleanUp
 		var val = m_lliBulletPool.First.Value;
 		val.SetData(a_eBulletID.GetBulletData(), a_refAtk);
 		val.SetValue(a_VcFirstPos, a_VcDir);
+		val.gameObject.layer = a_nLayer;
 
 		m_lliBullet.AddLast(val);
 		m_lliBulletPool.RemoveFirst();
+
+		return val;
 	}
 
 	public void DoUpdate(float a_fDelta)

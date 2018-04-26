@@ -6,6 +6,12 @@ using Global_Define;
 
 public class Bullet : InGameObject, IUpdate, IAttackInfo
 {
+	#region INSPECTOR
+
+	public AttackObject m_objAtk;
+
+	#endregion
+
 	BulletData		m_refData = null;
 	ST_AttackInfo	m_refAtkInfo = null;
 
@@ -59,6 +65,8 @@ public class Bullet : InGameObject, IUpdate, IAttackInfo
 
 		m_fNowSpeed = a_refData.fSpeed;
 		m_fNowLife = a_refData.fLifeTime;
+
+		m_objAtk.SetOwner(this);
 
 		Refresh();
 	}

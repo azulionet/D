@@ -74,7 +74,7 @@ abstract public class Character : InGameObject, IAttackInfo
 				m_fTwinkle = 0.0f;
 			}
 
-			if (m_fIndesTime < 0.0f)
+			if (m_fIndesTime <= 0.0f)
 			{
 				m_fIndesTime = -1.0f;
 				m_Img.enabled = true;
