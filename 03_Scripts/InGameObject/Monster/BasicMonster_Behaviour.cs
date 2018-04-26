@@ -7,18 +7,18 @@ using Global_Define;
 public partial class BasicMonster : Character, IFixedUpdate
 {
 	// 판단
-	bool IsInDetectRange()
+	protected bool IsInDetectRange()
 	{
 		return Define.IsInRange(m_refPlayerTF.localPosition, transform.localPosition, m_refData.fDetectRange);
 	}
 
-	bool IsInAttackRange()
+	protected bool IsInAttackRange()
 	{
 		return Define.IsInRange(m_refPlayerTF.localPosition, transform.localPosition, m_refData.fAttackRange);
 	}
 
 	// 행동
-	void MoveToHero(float a_fDelta)
+	protected void MoveToHero(float a_fDelta)
 	{
 		if( m_fpMoveAction != null )
 		{
@@ -26,7 +26,7 @@ public partial class BasicMonster : Character, IFixedUpdate
 		}
 	}
 
-	void Attack(float a_fDelta)
+	protected void Attack(float a_fDelta)
 	{
 		if( m_fpAttackAction != null )
 		{

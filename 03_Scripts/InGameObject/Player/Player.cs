@@ -160,7 +160,7 @@ public partial class Player : Character
 					m_objAnim.CrossFade("charShot1", 0.1f);
 
 					vcR.Normalize();
-					var bullet = BulletMng.Ins.AddShot(m_objWeapon.layer, (eBullet)m_refAtk.nCutID, stHitInfo, transform.localPosition, vcR);
+					BulletMng.Ins.AddShot(m_objWeapon.layer, (eBullet)m_refAtk.nCutID, stHitInfo, transform.localPosition, vcR);
 				}
 				else
 				{

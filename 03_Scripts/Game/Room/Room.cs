@@ -18,7 +18,7 @@ public class Room : IFixedUpdate
 	int m_nY = 0;
 	int m_nKey = 0;
 
-	public List<FunctionWall> m_refWall;
+	public List<IFixedUpdate> m_refUpdateList = new List<IFixedUpdate>();
 	public LinkedList<BasicMonster> m_liMonster = new LinkedList<BasicMonster>();
 
 	public GameObject m_objPoolRoot;
@@ -82,7 +82,16 @@ public class Room : IFixedUpdate
 		}
 
 		// 벽
-		m_refWall = m_refRoom.m_liWall;
+		for( int i=0; i<m_refRoom.m_liWall.Count; ++i )
+		{
+			m_refUpdateList.Add(m_refRoom.m_liWall[i]);
+		}
+
+		// 총알 몹
+		for (int i = 0; i < m_refRoom.m_liBulletMonster.Count; ++i)
+		{
+			m_refUpdateList.Add(m_refRoom.m_liBulletMonster[i]);
+		}
 
 		// SetVisible(true) 일 때 세팅관련 플래그
 		m_bSettingFlag = false;
@@ -138,11 +147,11 @@ public class Room : IFixedUpdate
 
 	public void DoFixedUpdate(float a_fDeltaTime)
 	{
-		if( m_refWall != null )
+		if( m_refUpdateList != null )
 		{
-			for( int i=0; i<m_refWall.Count; ++i )
+			for( int i=0; i<m_refUpdateList.Count; ++i )
 			{
-				m_refWall[i].DoFixedUpdate(a_fDeltaTime);
+				m_refUpdateList[i].DoFixedUpdate(a_fDeltaTime);
 			}
 		}
 

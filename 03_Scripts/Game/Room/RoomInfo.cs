@@ -24,6 +24,7 @@ public class RoomInfo : MonoBehaviour
 	public BoxCollider2D[] m_arrTrigger = new BoxCollider2D[nDIR_COUNT]; // 네 방향 트리거의 콜라이더
 
 	public List<FunctionWall> m_liWall;
+	public List<BulletMonster> m_liBulletMonster;
 	public List<MonsterSpawn> m_objMosnterPos;
 
 	#endregion

@@ -91,7 +91,7 @@ public static class AttackTable
 		bulletData = new BulletData();
 		bulletData.eID = eBullet.Normal;
 		bulletData.strSpriteName = "coinBronze";
-		bulletData.fLifeTime = 1.0f;
+		bulletData.fLifeTime = 3.0f;
 		bulletData.fSpeed = 5;
 		bulletData.fWidth = 6;
 		bulletData.fHeight = 6;

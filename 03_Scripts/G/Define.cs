@@ -153,6 +153,7 @@ namespace Global_Define
 		M_Bat,
 		M_BigBat,
 
+		M_BulletMonster,
 
 		___MIDDLE_BOSS___ = MiddleBoss * CategoryGap,
 

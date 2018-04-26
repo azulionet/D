@@ -194,6 +194,15 @@ public static class StatTable
 
 		m_mapStat.Add(st.eID, st);
 
+		st = new StatData();
+		st.eID = eID.M_BulletMonster;
+		st.strName = "총알 몹";
+		st.strInfo = "총알 몹";
+		
+		st.fAtkSpd = 1.0f;
+		m_mapStat.Add(st.eID, st);
+
+
 		// eID.M_Ghost,
 		// eID.M_Banshee,
 		// eID.M_Bat,
