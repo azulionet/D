@@ -58,5 +58,6 @@ public class CScene_Game : CScene
 		float fDeltaTime = Time.deltaTime;
 
 		DungeonMng.Ins.DoFixedUpdate(fDeltaTime);
+		BulletMng.Ins.DoUpdate(fDeltaTime);
 	}
 }

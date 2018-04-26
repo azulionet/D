@@ -34,6 +34,8 @@ public class Bullet : InGameObject, IUpdate, IAttackInfo
 		pos.x += move.x;
 		pos.y += move.y;
 
+		transform.localPosition = pos;
+
 		m_fNowLife -= a_fDeltaTime;
 	}
 
@@ -74,5 +76,13 @@ public class Bullet : InGameObject, IUpdate, IAttackInfo
 		{
 			Reset();
 		}
+	}
+
+	public void SetValue(Vector3 a_vcPos, Vector3 a_vcDir)
+	{
+		transform.localPosition = a_vcPos;
+
+		m_vcDir.x = a_vcDir.x;
+		m_vcDir.y = a_vcDir.y;
 	}
 }

@@ -64,13 +64,13 @@ public class BulletMng : MonoBehaviour, ICleanUp
 	{
 		for( int i=0; i<a_nCount; ++i )
 		{
-			m_objRoot.Instantiate_asChild("Game/Bullet");
+			GameObject bullet = (m_objRoot.Instantiate_asChild("Game/Bullet"));
+
+			m_lliBulletPool.AddLast(bullet.GetComponent<Bullet>());
 		}
-		
-		// m_lliBulletPool.
 	}
 
-	public void AddShot(eBullet a_eBulletID, ST_AttackInfo a_refAtk, ref Vector3 a_VcFirstPos, Character a_refTarget = null)
+	public void AddShot(eBullet a_eBulletID, ST_AttackInfo a_refAtk, Vector3 a_VcFirstPos, Vector3 a_VcDir, Character a_refTarget = null)
 	{
 		if( m_lliBulletPool.Count == 0 )
 		{
@@ -79,6 +79,7 @@ public class BulletMng : MonoBehaviour, ICleanUp
 
 		var val = m_lliBulletPool.First.Value;
 		val.SetData(a_eBulletID.GetBulletData(), a_refAtk);
+		val.SetValue(a_VcFirstPos, a_VcDir);
 
 		m_lliBullet.AddLast(val);
 		m_lliBulletPool.RemoveFirst();
@@ -105,7 +106,7 @@ public class BulletMng : MonoBehaviour, ICleanUp
 			for (int i = 0; i < nCount; ++i)
 			{
 				m_liRemove[i].Reset();
-				m_lliBulletPool.Remove(m_liRemove[i]);
+				m_lliBullet.Remove(m_liRemove[i]);
 				m_lliBulletPool.AddLast(m_liRemove[i]);
 			}
 			

@@ -51,6 +51,7 @@ public partial class Player : Character
 
 	// 현재 장비
 	ST_EquipInfo			m_refEquip;
+	AttackData				m_refAtk;
 
 	virtual public System.Action fpUpdate
 	{
@@ -77,9 +78,9 @@ public partial class Player : Character
 
 		m_ImgWeapon.sprite = atals.GetSprite(eAtlas.Weapon01, data.strSpriteName);
 
-		AttackData tb = m_refEquip.eMainHand.GetAttackData();
+		m_refAtk = m_refEquip.eMainHand.GetAttackData();
 
-		var rt = tb.stRt;
+		var rt = m_refAtk.stRt;
 		m_colliderAtk.size = rt.size;
 
 		// m_colliderAtk.offset = rt.position;
@@ -120,6 +121,7 @@ public partial class Player : Character
 		var centerPos = m_objCenter.transform.position;
 		var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		var vcR = mousePos - centerPos;
+		
 
 		// 플립여부
 		m_bRight = vcR.x > 0;
@@ -131,7 +133,7 @@ public partial class Player : Character
 			float fVal = Mathf.Atan(vcR.y / vcR.x);
 			fVal *= Mathf.Rad2Deg;
 
-			if( vcR.x < 0 )
+			if ( vcR.x < 0 )
 			{
 				fVal = -fVal;
 			}
@@ -151,10 +153,21 @@ public partial class Player : Character
 			if( m_objAnim.enabled == false )
 			{
 				m_objAnim.enabled = true;
-				m_objAnim.CrossFade("charAtk1", 0.1f);
+				
+				if( m_refAtk.bIsBullet == true )
+				{
+					m_objAnim.speed = 3; // 임시 코드 : 공속에 따라 변경 클수록 빨라짐
+					m_objAnim.CrossFade("charShot1", 0.1f);
 
-				// 공속에 따라 변경 클수록 빨라짐
-				// m_objAnim.speed = 2;
+					vcR.Normalize();
+					BulletMng.Ins.AddShot((eBullet)m_refAtk.nCutID, stHitInfo, transform.localPosition, vcR);
+				}
+				else
+				{
+					m_objAnim.speed = 1; // 임시 코드 : 공속에 따라 변경 클수록 빨라짐
+
+					m_objAnim.CrossFade("charAtk1", 0.1f);
+				}
 			}
 		}
 
