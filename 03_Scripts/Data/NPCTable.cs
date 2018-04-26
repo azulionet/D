@@ -14,6 +14,9 @@ public class NPCData
 
 	public int		nID;
 	public string	strName;
+
+	public int		nAtals;
+	public string	strAtlas;
 }
 
 public static class NPCTable

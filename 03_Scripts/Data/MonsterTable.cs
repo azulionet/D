@@ -8,6 +8,7 @@ public class MonsterData
 {
     public Global_Define.eID eID;
     public string		strName;
+	public int			nAtlas;
 	public string		strSpriteName;
 
 	public eLandType	eLand;

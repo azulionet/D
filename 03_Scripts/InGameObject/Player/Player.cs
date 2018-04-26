@@ -13,8 +13,9 @@ public partial class Player : Character
 	public GameObject		m_objCenter;
 	public GameObject		m_objHand;
 	public BoxCollider2D	m_colliderAtk;
-
-	public GameObject		m_objWaepon;
+	
+	public GameObject		m_objWeapon;
+	public SpriteRenderer	m_ImgWeapon;
 
 	public Animator			m_objAnim;
 
@@ -71,6 +72,11 @@ public partial class Player : Character
 
 	public void SetAttackRange()
 	{
+		var data = m_refEquip.eMainHand.GetItemData();
+		var atals = CSceneMng.Ins.iAtlas;
+
+		m_ImgWeapon.sprite = atals.GetSprite(eAtlas.Weapon01, data.strSpriteName);
+
 		AttackData tb = m_refEquip.eMainHand.GetAttackData();
 
 		var rt = tb.stRt;

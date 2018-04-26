@@ -9,6 +9,7 @@ public class ItemData
 {
 	public Global_Define.eID	eID;
 	public string				strName;
+	public int					nAtlas;
 	public string				strSpriteName;
 }
 

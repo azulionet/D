@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace Global_Define
 {
@@ -18,6 +19,9 @@ namespace Global_Define
 	{
 		public const string PREFAB_PATH		= "Prefab\\";
 		public const string PREFAB_PATH_ADD	= "Prefab\\{0}";
+
+		public const string ATLAS_PATH = "Atlas\\";
+		public const string ATLAS_PATH_ADD = "Atlas\\{0}";
 	}
 	
 	
@@ -115,8 +119,12 @@ namespace Global_Define
 		Boss		= 6,
 		Equip		= 7,
 		Accessary	= 8,
-		
+		Attack		= 9,
+		Bullet		= 10,
 
+		CategoryLast,
+		CategoryCount = CategoryLast-1,
+		
 		___Hero___	= Hero * CategoryGap,
 
 		H_Adventurer,
@@ -192,31 +200,65 @@ namespace Global_Define
 		ShortSword = 1,
 	}
 
+	public enum eAtlas
+	{
+		CategoryGap = 100,
 
+		___Hero___ = eID.Hero * CategoryGap,
+		
+		___NPC___ = eID.NPC * CategoryGap,
 
+		___Dungeon_NPC___ = eID.Dungeon_NPC * CategoryGap,
+
+		___Monster___ = eID.Monster * CategoryGap,
+
+		___MiddleBoss___ = eID.MiddleBoss * CategoryGap,
+
+		___Boss___ = eID.Boss * CategoryGap,
+
+		___Equip___ = eID.Equip * CategoryGap,
+
+		Weapon01,
+
+		___Accessary___ = eID.Accessary * CategoryGap,
+		
+		___Attack___ = eID.Attack * CategoryGap,
+		
+		___Bullet___ = eID.Bullet * CategoryGap,
+
+		Bullet01,
+		
+	}
+	
 	// 인터페이스 -----------------------------------------------------------
 
 	public interface ICleanUp
 	{
-		void ChangeSceneCleanUp();
+		void			ChangeSceneCleanUp();
 	}
 
 	public interface IUpdate
 	{
-		void DoUpdate(float a_fDelta);
+		void			DoUpdate(float a_fDelta);
 	}
 
 	public interface IFixedUpdate
 	{
-		void DoFixedUpdate(float a_fDelta);
+		void			DoFixedUpdate(float a_fDelta);
 	}
 
     public interface IAttackInfo
     {
-		bool GetDir();
-		ST_AttackInfo AttackInfo();
+		bool			GetDir();
+		ST_AttackInfo	AttackInfo();
     }
 
+	public interface IAtlas
+	{
+		SpriteAtlas		GetAtlas(eAtlas a_eAtlas);
+		Sprite			GetSprite(eAtlas a_eAtlas, string a_strSpriteName);
+	}
+	
 	// 유틸 함수 -----------------------------------------------------------
 
 	static public partial class Define

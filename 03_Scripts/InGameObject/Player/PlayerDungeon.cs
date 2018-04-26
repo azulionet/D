@@ -8,12 +8,6 @@ using Global_Define;
 
 public class PlayerDungeon : Player
 {
-	#region INSPECTOR
-
-	public SpriteAtlas ee;
-
-	#endregion
-
 	ST_AttackInfo m_stDash = new ST_AttackInfo();
 	ST_AttackInfo m_refNowHitInfo = null;
 
@@ -45,8 +39,6 @@ public class PlayerDungeon : Player
 			m_fpOnTriggerExit2D = OnTriggerExit2D_InDungeon;
 			m_fpOnCollisionEnter2D = OnCollisionEnter2D_InDungeon;
 		}
-
-		this.m_Img.sprite = ee.GetSprite("barnacle");
 	}
 
 	public void FixedUpdate_InDungeon()

@@ -29,6 +29,7 @@ public class AttackCutData
 public class BulletData
 {
 	public eBullet				eID;
+	public int					nAtlas;
 	public string				strSpriteName;
 	public float				fLifeTime;
 	public float				fSpeed;

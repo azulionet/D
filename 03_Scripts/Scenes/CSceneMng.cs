@@ -80,6 +80,11 @@ public class CSceneMng : MonoBehaviour
 		get { return m_refScene.m_eScene; }
 	}
 
+	public IAtlas iAtlas
+	{
+		get { return m_refScene as IAtlas; }
+	}
+
 	public void ToggleInvenVisible()
 	{
 		if( m_objInven == null )
