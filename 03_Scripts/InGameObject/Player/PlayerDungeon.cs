@@ -51,7 +51,7 @@ public class PlayerDungeon : Player
 		if (Input.GetAxis("Vertical") < 0 && Input.GetButton("Jump"))
 		{
 			var pos = transform.localPosition;
-			pos.y -= 20;
+			pos.y -= 1f;
 			transform.localPosition = pos;
 			// 
 			// 			m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
@@ -76,13 +76,7 @@ public class PlayerDungeon : Player
 			// m_rb.isKinematic = false;
 		}
 
-		bool bGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
-		if (bGround == true)
-		{
-			this.m_stStat.nNowJumpCount = 0;
-		}
-
-		m_bGrounded = bGround;
+		m_bGrounded = IsGroundCheck();
 
 		float f = Input.GetAxis("Horizontal");
 		f /= 2;
@@ -108,7 +102,7 @@ public class PlayerDungeon : Player
 			m_fpOnCollisionEnter2D = OnCollisionEnter2D_InDungeon_Dash;
 		}
 	}
-
+	
 	override public void ResetDash()
 	{
 		m_refNowHitInfo = m_stHit;

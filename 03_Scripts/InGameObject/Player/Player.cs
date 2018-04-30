@@ -24,7 +24,7 @@ public partial class Player : Character
 	protected bool		m_bJumping;
 	protected bool		m_bGrounded;
 
-	public Transform	groundCheck;
+	public Transform[]	groundCheck;
 	public LayerMask	groundLayers;
 
 	public float		fHandRoundRadius = 0.001f;

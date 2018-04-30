@@ -42,17 +42,46 @@ public partial class Player : Character
 		{
 			// m_rb.isKinematic = false;
 		}
-
-		bool bGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
-		if( bGround == true )
-		{
-			m_stStat.nNowJumpCount = 0;
-		}
-
-		m_bGrounded = bGround;
+		
+		m_bGrounded = IsGroundCheck();
 
 		float f = Input.GetAxis("Horizontal");
 		m_Rb.velocity = new Vector2(f * m_stStat.fMove, m_Rb.velocity.y);
+	}
+
+	protected bool IsGroundCheck()
+	{
+		bool bGround = false;
+
+		Collider2D[] colArr1 = null;
+		Collider2D[] colArr2 = null;
+
+		int nSize = Physics2D.OverlapPointNonAlloc(groundCheck[0].position, colArr1, groundLayers);
+
+		for (int i = 0; i < nSize; ++i)
+		{
+			if( colArr1[i].CompareTag("ground") == true )
+			{
+				bGround = true;
+				break;
+			}
+		}
+
+		if( bGround == false )
+		{
+			nSize = Physics2D.OverlapPointNonAlloc(groundCheck[1].position, colArr2, groundLayers);
+
+			for (int i = 0; i < nSize; ++i)
+			{
+				if (colArr1[i].CompareTag("ground") == true)
+				{
+					bGround = true;
+					break;
+				}
+			}
+		}
+
+		return bGround;
 	}
 
 	private void OnTriggerEnter2D_InTown(Collider2D collision)
