@@ -222,6 +222,7 @@ public partial class BasicMonster : Character, IFixedUpdate
 
 					if (bIsDie == true)
 					{
+						Die();
 						Debug.LogError("으앙 다이");
 					}
 				}
@@ -230,6 +231,8 @@ public partial class BasicMonster : Character, IFixedUpdate
 		}
 	}
 
+	UI_HpBar m_refHPBar = null;
+
 	public override void GetHit(ST_AttackInfo a_refAttack)
 	{
 		Define.Attack_ToMonster(ref m_stStat, a_refAttack);
@@ -237,7 +240,20 @@ public partial class BasicMonster : Character, IFixedUpdate
 		m_fIndesTime = 0.1f;
 
 		CSceneMng.Ins.CameraShake(0.4f);
+
+		if(m_refHPBar == null )
+		{
+			m_refHPBar = UI_Hud.Ins.ActiveHPBar(this);
+		}
 	}
 
-	//
+	void Die()
+	{
+		// 룸에 보고, 스폰 몬스터 데이터에 die true로 체크
+
+		if( m_refHPBar != null )
+		{
+			UI_Hud.Ins.DeactiveHPBar(m_refHPBar);
+		}
+	}
 }

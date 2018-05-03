@@ -94,7 +94,7 @@ namespace UnityStandardAssets.Utility
 			vcAdd = Vector2.zero;
 		}
 
-		void LateUpdate()
+		void FixedUpdate()
 		{
 			// Calculate the current rotation angles
 			var wantedHeight = target.position.y + height;

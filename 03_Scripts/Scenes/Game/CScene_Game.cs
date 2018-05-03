@@ -53,11 +53,11 @@ public class CScene_Game : CScene
 		{
 			CSceneMng.Ins.ChangeScene(Global_Define.eScene.Town);
 		}
-
-
-		float fDeltaTime = Time.deltaTime;
+		
+		float fDeltaTime = Time.fixedDeltaTime;
 
 		DungeonMng.Ins.DoFixedUpdate(fDeltaTime);
 		BulletMng.Ins.DoUpdate(fDeltaTime);
+		UI_Hud.Ins.DoFixedUpdate(fDeltaTime);
 	}
 }

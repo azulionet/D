@@ -49,6 +49,7 @@ abstract public class Character : InGameObject, IAttackInfo
 
 	public bool bIsIndestructable	{ get { return (m_fIndesTime >= 0.0f); } }
 	public bool bIsDie				{ get { return (m_stStat.nNowHP < 0); } }
+	public float fHPRate			{ get { return (m_stStat.nNowHP / (float)m_stStat.nMaxHP); } }
 
 // 	protected void OnHit()
 // 	{

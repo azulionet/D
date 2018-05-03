@@ -93,6 +93,12 @@ public class Room : IFixedUpdate
 			m_refUpdateList.Add(m_refRoom.m_liBulletMonster[i]);
 		}
 
+		// 기타 업데이트 리스트
+		for (int i = 0; i < m_refRoom.m_liObj.Count; ++i)
+		{
+			m_refUpdateList.Add(m_refRoom.m_liObj[i]);
+		}
+
 		// SetVisible(true) 일 때 세팅관련 플래그
 		m_bSettingFlag = false;
 	}

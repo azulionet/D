@@ -298,7 +298,7 @@ namespace Global_Define
 		{
 			for (int i = 0; i < Define.nRANDOM_POOL; ++i)
 			{
-				m_nArr[i] = Rand.Random() % 10000;
+				m_nArr[i] = UnityEngine.Random.Range(0, 10000);
 			}
 		}
 
@@ -318,6 +318,7 @@ namespace Global_Define
 
 		public static int Random()						{ return m_nArr[nIndex]; }
 
+		public static float Percent()					{ return m_nArr[nIndex] * 0.0001f; }
 		public static bool Percent(int a_nPercent)		{ return m_nArr[nIndex] <= (a_nPercent * 100); }
 		public static bool Permile(int a_nPermile)		{ return m_nArr[nIndex] <= (a_nPermile * 10); }
 		public static bool Permilad(int a_nPermilad)	{ return m_nArr[nIndex] <= a_nPermilad; }

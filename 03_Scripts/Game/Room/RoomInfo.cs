@@ -14,7 +14,6 @@ public class RoomInfo : MonoBehaviour
 	public GameObject m_RootEtc;
 	public GameObject m_objRoot_Tile;
 	public GameObject m_objRoot_MonsterSpawn;
-	public GameObject m_objRoot_FunctionWall;
 
 	public GameObject[] m_arrSpawnRoot = new GameObject[nDIR_COUNT]; // 네 방향 스폰위치
 	public GameObject[] m_arrEventWallRoot = new GameObject[nDIR_COUNT]; // 네 방향 이벤트 벽 루트
@@ -26,6 +25,7 @@ public class RoomInfo : MonoBehaviour
 	public List<FunctionWall> m_liWall;
 	public List<BulletMonster> m_liBulletMonster;
 	public List<MonsterSpawn> m_objMosnterPos;
+	public List<UpdateableObject> m_liObj;
 
 	#endregion
 	
@@ -35,7 +35,6 @@ public class RoomInfo : MonoBehaviour
 	{
 		if( m_objRoot_Tile == null )			{ m_objRoot_Tile = m_RootEtc; }
 		if( m_objRoot_MonsterSpawn == null )	{ m_objRoot_MonsterSpawn = m_RootEtc; }
-		if( m_objRoot_FunctionWall == null )	{ m_objRoot_FunctionWall = m_RootEtc; }
 
 		for( int i=0; i<nDIR_COUNT; ++i )
 		{
