@@ -23,7 +23,13 @@ namespace Global_Define
 		public const string ATLAS_PATH = "Atlas\\";
 		public const string ATLAS_PATH_ADD = "Atlas\\{0}";
 	}
-	
+
+	public enum eLog
+	{
+		Log,
+		Warning,
+		Error,
+	}
 	
     public enum eScene
 	{
@@ -273,9 +279,8 @@ namespace Global_Define
 		{
 			float fX = a_vcPos1.x - a_vcPos2.x;
 			float fY = a_vcPos1.y - a_vcPos2.y;
-			float fZ = a_vcPos1.z - a_vcPos2.z;
 
-			return ((a_fRange * a_fRange) > (fX * fX + fY * fY + fZ * fZ));
+			return ((a_fRange * a_fRange) > (fX * fX + fY * fY));
 		}
 
 		public static void Attack_ToMonster(ref ST_GameStat a_refMonsterStat, ST_AttackInfo a_refAttackData)
@@ -286,6 +291,31 @@ namespace Global_Define
 		public static void Attack_ToPlayer(ref ST_GameStat a_refPlayerStat, ST_AttackInfo a_refAttackData)
 		{
 			a_refPlayerStat.nNowHP -= a_refAttackData.m_nDamage;
+		}
+		
+		[System.Diagnostics.Conditional("UNITY_EDITOR")]
+		public static void Log(string a_strLog, eLog a_eLogType = eLog.Log) // 로그성 데이터
+		{
+			switch (a_eLogType)
+			{
+				case eLog.Log:
+				{
+					Debug.Log(a_strLog);
+				} break;
+				case eLog.Warning:
+				{
+					Debug.LogWarning(a_strLog);
+				} break;
+				case eLog.Error:
+				{
+					Debug.LogError(a_strLog);
+				} break;
+			}
+		}
+
+		public static void LogError(string a_strLog) // 에러는 무조건 출력하는게 맞음
+		{
+			Debug.LogError(a_strLog);
 		}
 	}
 

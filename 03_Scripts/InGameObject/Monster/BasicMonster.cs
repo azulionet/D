@@ -172,7 +172,7 @@ public partial class BasicMonster : Character, IFixedUpdate
 
 			if( obj  == null )
 			{
-				Debug.LogError("logic error");
+				Define.LogError("logic error");
 				return;
 			}
 			
@@ -186,12 +186,12 @@ public partial class BasicMonster : Character, IFixedUpdate
 				case eDamageSource.PlayerSkill:
 				{
 					GetHit(atkInfo);
-					
-					Debug.LogError("어택드");
+
+					Define.Log("어택드", eLog.Error);
 
 					if( bIsDie == true )
 					{
-						Debug.LogError("으앙 다이");
+						Define.Log("으앙 다이", eLog.Error);
 					}
 				}
 				break;
@@ -203,7 +203,7 @@ public partial class BasicMonster : Character, IFixedUpdate
 
 			if (obj == null)
 			{
-				Debug.LogError("logic error");
+				Define.LogError("logic error");
 				return;
 			}
 
@@ -218,12 +218,12 @@ public partial class BasicMonster : Character, IFixedUpdate
 				{
 					GetHit(atkInfo);
 
-					Debug.LogError("어택드");
+					Define.Log("어택드", eLog.Error);
 
 					if (bIsDie == true)
 					{
 						Die();
-						Debug.LogError("으앙 다이");
+						Define.Log("으앙 다이", eLog.Error);
 					}
 				}
 				break;
@@ -244,6 +244,7 @@ public partial class BasicMonster : Character, IFixedUpdate
 		if(m_refHPBar == null )
 		{
 			m_refHPBar = UI_Hud.Ins.ActiveHPBar(this);
+			// 
 		}
 	}
 

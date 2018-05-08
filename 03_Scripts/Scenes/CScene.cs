@@ -58,6 +58,8 @@ public class CScene : MonoBehaviour, IAtlas
 
 	public Sprite GetSprite(eAtlas a_eAtlas, string a_strSpriteName)
 	{
+		var spr = GetAtlas(a_eAtlas);
+
 		return GetAtlas(a_eAtlas).GetSprite(a_strSpriteName);
 	}
 }

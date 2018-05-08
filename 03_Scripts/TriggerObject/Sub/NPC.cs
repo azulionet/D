@@ -20,7 +20,7 @@ public class NPC : TriggerObject
 	{
 		if( m_eNPC == eID.None )
 		{
-			Debug.LogError("inspector error - set value in inspector");
+			Define.LogError("inspector error - set value in inspector");
 		}
 
 		m_refTable = m_eNPC.GetNPCData();

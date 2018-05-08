@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Global_Define;
+
 public partial class Player : Character
 {
 	private void Update_InTown()
@@ -126,7 +128,7 @@ public partial class Player : Character
 
 			if (a_refBrick == null)
 			{
-				Debug.LogError("logic error - check Collider Tag");
+				Define.LogError("logic error - check Collider Tag");
 				return;
 			}
 

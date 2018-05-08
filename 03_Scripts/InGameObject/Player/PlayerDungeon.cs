@@ -59,6 +59,8 @@ public class PlayerDungeon : Player
 		}
 		else if (Input.GetButton("Jump") == true)
 		{
+			
+
 			// if (m_stStat.nNowJumpCount < m_stStat.nMaxJump)
 			{
 				m_Rb.velocity = new Vector2(m_Rb.velocity.x, 0);
@@ -85,8 +87,12 @@ public class PlayerDungeon : Player
 
 		if( Input.GetButtonDown("Fire2") == true )
 		{
+			StartTrailImage();
+
 			var centerPos = transform.position;
 			var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+			m_Rb.isKinematic = true;
 
 			m_vcDest = mousePos - centerPos;
 			m_vcDest.Normalize();
@@ -107,6 +113,7 @@ public class PlayerDungeon : Player
 	{
 		m_refNowHitInfo = m_stHit;
 		m_colliderAtk.enabled = false;
+		m_Rb.isKinematic = false;
 
 		m_fpFixedUpdate = fpUpdate;
 		m_fpOnTriggerEnter2D = OnTriggerEnter2D_InDungeon;
@@ -115,7 +122,7 @@ public class PlayerDungeon : Player
 
 	public void OnTriggerEnter2D_InDungeon_Dash(Collider2D collision)
 	{
-		if( collision.CompareTag("Wall") == true ||
+		if( collision.CompareTag("Ground") == true ||
 			collision.CompareTag("Trigger") == true )
 		{
 			ResetDash();
@@ -133,7 +140,7 @@ public class PlayerDungeon : Player
 
 	public void OnCollisionEnter2D_InDungeon_Dash(Collision2D collision)
 	{
-		if( collision.gameObject.CompareTag("Wall") == true ||
+		if( collision.gameObject.CompareTag("Ground") == true ||
 			collision.gameObject.CompareTag("Trigger") == true )
 		{
 			ResetDash();
@@ -153,5 +160,52 @@ public class PlayerDungeon : Player
 	public void OnCollisionEnter2D_InDungeon(Collision2D collision)
 	{
 		if (this.m_Rb.isKinematic == true) { return; }
-	}	
+	}
+
+
+	// 잔상
+	List<GameObject> trailParts = new List<GameObject>();
+
+	void StartTrailImage()
+	{
+		StartCoroutine(TrailImage());
+	}
+
+	IEnumerator TrailImage()
+	{
+		for( int i=0; i<13; ++i )
+		{
+			SpawnTrailPart();
+			yield return new WaitForSeconds(0.01f);
+		}
+	}
+
+	void SpawnTrailPart()
+	{
+		GameObject trailPart = new GameObject();
+		SpriteRenderer trailPartRenderer = trailPart.AddComponent<SpriteRenderer>();
+		trailPartRenderer.sprite = m_Img.sprite;
+		trailPart.transform.position = m_Img.transform.position;
+		trailParts.Add(trailPart);
+
+		StartCoroutine(FadeTrailPart(trailPartRenderer));
+		StartCoroutine(DestroyTrailPart(trailPart, 0.4f));
+	}
+
+	IEnumerator FadeTrailPart(SpriteRenderer trailPartRenderer)
+	{
+		Color color = trailPartRenderer.color;
+		color.a -= 0.5f; // replace 0.5f with needed alpha decrement
+		trailPartRenderer.color = color;
+
+		yield return new WaitForEndOfFrame();
+	}
+
+	IEnumerator DestroyTrailPart(GameObject trailPart, float delay)
+	{
+		yield return new WaitForSeconds(delay);
+
+		trailParts.Remove(trailPart);
+		Destroy(trailPart);
+	}
 }

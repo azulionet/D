@@ -12,7 +12,7 @@ public class AttackObject : MonoBehaviour, IAttackInfo
 	{
 		if( a_refOwner == null )
 		{
-			Debug.LogError("arg error");
+			Define.LogError("arg error");
 		}
 
 		m_refOwner = a_refOwner;

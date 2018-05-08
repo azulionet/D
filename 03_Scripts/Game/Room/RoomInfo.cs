@@ -43,8 +43,6 @@ public class RoomInfo : MonoBehaviour
 			if( m_arrBlockWallRoot[i] == null )	{ m_arrBlockWallRoot[i] = m_RootEtc; }
 			if( m_arrTriggerRoot[i] == null )	{ m_arrTriggerRoot[i] = m_RootEtc; }
 		}
-
-		gameObject.transform.SetTag_AllChildren("Wall");
 	}
 
 	public void SetVisible(bool a_bVisible)
@@ -72,14 +70,14 @@ public class RoomInfo : MonoBehaviour
 
 		for( int i=0; i< m_arrSpawnRoot.Length; ++i )
 		{
-			Gizmos.DrawCube(m_arrSpawnRoot[i].transform.position, new Vector3(0.1f,0.1f,0.1f));
+			Gizmos.DrawCube(m_arrSpawnRoot[i].transform.position, new Vector3(1f,1f,1f));
 		}
 
 		Gizmos.color = Color.red;
 
 		for (int i = 0; i < m_objMosnterPos.Count; ++i)
 		{
-			Gizmos.DrawCube(m_objMosnterPos[i].transform.position, new Vector3(0.05f, 0.05f, 0.05f));
+			Gizmos.DrawCube(m_objMosnterPos[i].transform.position, new Vector3(0.5f, 0.5f, 0.5f));
 		}
 	}
 

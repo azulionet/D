@@ -16,7 +16,7 @@ public class ScenePortal : TriggerObject
 	{
 		if (m_eScene == eScene.None)
 		{
-			Debug.LogError("logic error - inspector value setting");
+			Define.LogError("logic error - inspector value setting");
 		}
 	}
 

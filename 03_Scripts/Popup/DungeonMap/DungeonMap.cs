@@ -42,7 +42,7 @@ public class DungeonMap : MonoBehaviour
 
 		if (m_liRoom.Count < m_refData.m_mapRoom.Count)
 		{
-			Debug.LogError("set more room in INSPECTOR");
+			Define.LogError("set more room in INSPECTOR");
 			return;
 		}
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Global_Define;
 
 public class UI_InventorySlot : MonoBehaviour
 {
@@ -32,17 +32,17 @@ public class UI_InventorySlot : MonoBehaviour
 	// 메세지 처리기
 	public void OnClickInven_MouseOver()
 	{
-		Debug.LogError("m over");
+		Define.Log("m over");
 	}
 
 	public void OnClickInven_MouseOut()
 	{
-		Debug.LogError("m out");
+		Define.Log("m out");
 	}
 
 	public void OnClickInven()
 	{
-		Debug.LogError("Click inven");
+		Define.Log("Click inven");
 	}
 
 }

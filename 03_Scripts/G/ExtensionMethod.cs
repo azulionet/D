@@ -13,7 +13,7 @@ public static class ExtensionMethod
 	{
 		if (string.IsNullOrEmpty(a_strPrefabName) == true)
 		{
-			Debug.LogError("arg error");
+			Define.LogError("arg error");
 			return null;
 		}
 
@@ -23,7 +23,7 @@ public static class ExtensionMethod
 
 		if( objPrefab == null )
 		{
-			Debug.LogError(string.Format("logic error - no prefab name {0}", FileName_withPath));
+			Define.LogError(string.Format("logic error - no prefab name {0}", FileName_withPath));
 			return null;
 		}
 		
@@ -99,7 +99,7 @@ public static class ExtensionMethod
 			case eDir.Bottom:	{ a_nReturn = (-ST_DungeonInfo.nGap); } break;
 		}
 
-		if( a_nReturn == 0 ) { Debug.LogError("logic error"); }
+		if( a_nReturn == 0 ) { Define.LogError("logic error"); }
 
 		return a_nReturn;
 	}

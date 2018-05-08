@@ -189,15 +189,8 @@ public class DungeonMng : MonoBehaviour, IFixedUpdate, ICleanUp
 			m_refActiveRoom.SetVisible(false);
 		}
 
-		try
-		{
-			m_nMapCoordX = nX;
-			m_nMapCoordY = nY;
-		}
-		catch
-		{
-			Debug.LogError(string.Format("x : {0}, y : {1}, Key : {2}", nX, nY, a_nKey));
-		}
+		m_nMapCoordX = nX;
+		m_nMapCoordY = nY;
 
 		CSceneMng.Ins.FadeIn(
 			() => {
